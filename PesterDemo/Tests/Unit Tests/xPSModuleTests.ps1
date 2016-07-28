@@ -1,12 +1,11 @@
 $currentFolder = Split-Path -Parent -Path $MyInvocation.MyCommand.Definition
 
-
 $Module = 'xPSPackage'
 $DSCResource = 'xPSModule'
 $moduleFolder = "$currentFolder\..\..\Resources\$Module"
 
 Describe "$DSCResource Test-TargetResource"{
-    
+
     Copy-Item "$moduleFolder\DSCResources\$DSCResource\$DSCResource.psm1" TestDrive:\script.ps1 -Force
     Mock Get-Module { return "$Module" }
     Mock Export-ModuleMember {return $true}
